@@ -46,12 +46,13 @@ export default function ForgotPasswordForm() {
     return (
         <form
             onSubmit={handleForgotPassword}
-            className="w-96 flex justify-center flex-col gap-y-4 p-8 border shadow-md rounded-md"
+            className="w-[500px] flex justify-center flex-col gap-y-4 p-8 rounded-md"
         >
-            <Title className="text-center mb-2">Forgot your password?</Title>
+            <Title className="text-center text-4xl mb-4">Forgot your password?</Title>
 
             <div>
                 <InputField 
+                    className="h-12"
                     type="email" 
                     placeholder="Enter your email" 
                     id="email" 
@@ -59,7 +60,7 @@ export default function ForgotPasswordForm() {
                     ref={emailRef}
                 />
             </div>
-            <CustomButton loading={isLoading}>Send reset password link</CustomButton>
+            <CustomButton className="h-12" loading={isLoading}>Send reset password link</CustomButton>
             <Link to="/auth/login" className="text-bluedefault underline text-xs">
                 Go back
             </Link>

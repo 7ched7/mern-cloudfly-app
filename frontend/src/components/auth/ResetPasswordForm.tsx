@@ -63,11 +63,12 @@ export default function ResetPasswordForm({ token }: { token: string }) {
     return (
         <form
             onSubmit={handleResetPassword}
-            className="w-96 flex justify-center flex-col gap-y-4 p-8 border shadow-md rounded-md"
+            className="w-[500px] flex justify-center flex-col gap-y-4 p-8 rounded-md"
         >
-            <Title className="text-center mb-2">Reset password</Title>
+            <Title className="text-center text-4xl mb-4">Reset password</Title>
             
             <InputField 
+                className="h-12"
                 type="password" 
                 placeholder="Enter your password" 
                 id="password" 
@@ -75,13 +76,14 @@ export default function ResetPasswordForm({ token }: { token: string }) {
                 ref={passwordRef}
             />
             <InputField
+                className="h-12"
                 type="password" 
                 placeholder="Enter your password again" 
                 id="password_confirmation" 
                 name="password_confirmation" 
                 ref={passwordRef}
             />
-            <CustomButton disabled={btnLoading} loading={isLoading}>Reset</CustomButton>
+            <CustomButton className="h-12" disabled={btnLoading} loading={isLoading}>Reset</CustomButton>
         </form>
     );
 }

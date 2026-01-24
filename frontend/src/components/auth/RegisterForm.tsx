@@ -64,9 +64,9 @@ export default function RegisterForm() {
     return (
         <form
             onSubmit={handleRegister}
-            className="w-96 flex justify-center flex-col gap-y-4 p-8 border shadow-md rounded-md"
+            className="w-[500px] flex justify-center flex-col gap-y-4 p-8 rounded-md"
         >
-            <Title className="text-center mb-2">Register</Title>
+            <Title className="text-center text-4xl mb-4">Register</Title>
 
             <GoogleSign />
             <div className="flex w-full items-center gap-2 text-xs">
@@ -77,6 +77,7 @@ export default function RegisterForm() {
             <div className="flex gap-2">
                 <div>
                     <InputWithLabel 
+                        className="h-12"
                         label="First Name" 
                         type="text" 
                         placeholder="First Name" 
@@ -87,6 +88,7 @@ export default function RegisterForm() {
                 </div>
                 <div>
                     <InputWithLabel 
+                        className="h-12"
                         label="Last Name" 
                         type="text" 
                         placeholder="Last Name" 
@@ -98,7 +100,8 @@ export default function RegisterForm() {
             </div>
             <div>
                 <InputWithLabel 
-                    label="Email" 
+                    className="h-12"
+                    label="Email"
                     type="email" 
                     placeholder="Email" 
                     id="email" 
@@ -108,6 +111,7 @@ export default function RegisterForm() {
             </div>
             <div>
                 <InputWithLabel 
+                    className="h-12"
                     label="Password" 
                     type="password" 
                     placeholder="Password" 
@@ -116,7 +120,7 @@ export default function RegisterForm() {
                     ref={passwordRef}
                 />
             </div>
-            <CustomButton loading={isLoading}>Register</CustomButton>
+            <CustomButton className="h-12" loading={isLoading}>Register</CustomButton>
             <p className="text-xs">
                 Do you have an account?{" "}
                 <Link to="/auth/login" className="text-bluedefault underline">

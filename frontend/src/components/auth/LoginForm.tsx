@@ -66,9 +66,9 @@ export default function LoginForm() {
     return (
         <form
             onSubmit={handleLogin}
-            className="w-96 flex justify-center flex-col gap-y-4 p-8 border shadow-md rounded-md"
+            className="w-[500px] flex justify-center flex-col gap-y-4 p-8 rounded-md"
         >
-            <Title className="text-center mb-2">Login</Title>
+            <Title className="text-center text-4xl mb-4">Login</Title>
             
             <GoogleSign />
             <div className="flex w-full items-center gap-2 text-xs">
@@ -78,6 +78,7 @@ export default function LoginForm() {
             </div>
             <div>
                 <InputWithLabel 
+                    className="h-12"
                     label="Email" 
                     type="email" 
                     placeholder="Email" 
@@ -88,6 +89,7 @@ export default function LoginForm() {
             </div>
             <div>
                 <InputWithLabel 
+                    className="h-12"
                     label="Password" 
                     type="password" 
                     placeholder="Password" 
@@ -95,7 +97,7 @@ export default function LoginForm() {
                     ref={passwordRef}
                 />
             </div>
-            <CustomButton disabled={btnLoading} loading={isLoading}>Login</CustomButton>
+            <CustomButton className="h-12" disabled={btnLoading} loading={isLoading}>Login</CustomButton>
             <div className="flex justify-between">
                 <p className="text-xs">
                     Not a member yet?{" "}
