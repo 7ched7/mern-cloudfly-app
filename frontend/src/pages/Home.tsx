@@ -31,7 +31,7 @@ export default function Home() {
                 <div className="flex flex-col items-center text-center justify-center gap-y-8">
                     <Title className="font-semibold text-4xl lg:text-5xl">
                         <span className="text-bluedefault text-4xl lg:text-6xl">
-                            Cloud-based
+                            Cloudfly
                         </span>
                         <br /> file{" "}
                         <AnimatePresence mode="wait">
