@@ -1,24 +1,87 @@
-# Cloudfly App
+# Cloudfly
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
 
-This project is a cloud-based file storage and sharing site built with the MERN stack (MongoDB, Express, React, Node.js).
+This project is a file storage and sharing web application built with the MERN stack (MongoDB, Express, React, Node.js). 
+
+<p align="center">
+    <img src="./frontend/src/assets/drive_view.png" width="600" alt="Cloudfly Drive Page"/>
+</p>
+
+> [!NOTE]
+> This is **not a production-grade** cloud service, it's just a personal project I built to practice full stack development. However, it is quite suitable for **personal use** or **small team file sharing** scenarios.
+
+## Stack
+
+Layer|Technology|Purpose
+-|-|-
+Frontend|React + Typescript|Fast & type-safe UI
+Styling|Shadcn UI + Tailwind CSS|Modern & responsive design
+Backend|Node.js + Express.js|RESTful API 
+Database|MongoDB|Flexible data storage
+Auth|JWT + Google OAuth|Secure authentication
+Encryption|Crypto (AES-256)|File encryption
+
+## Features
+
+- **Authentication & User Management**
+  - Email/Password login and registration
+  - Google OAuth ([Passport.js](https://www.passportjs.org/))
+  - Cookie-based JWT
+  - Forgot/Reset password (via [Nodemailer](https://nodemailer.com/))
+  - Profile editing
+  - Account deletion
+
+- **File & Folder Management**
+  - Upload files with AES encryption
+  - Create folders and subfolders
+  - Rename, move, star/unstar files and folders
+  - File and folder search
+  - Set files as public/private
+  - Public shareable links for files
+  - File preview
+  - Trash bin
+
+- **UI/UX**
+  - Modern user interface ([Shadcn UI](https://ui.shadcn.com/))
+  - Responsive design
+  - Dark/light theme
+  - Page transition effect ([Framer Motion](https://motion.dev/))
+  - Loading states
+  - Upload status display
+  - Multi select + Selection rectangle
+  - Drag and drop
+
+## Prerequisites
+
+- **Required**: `Node.js`, `npm` (or alternatives), `MongoDB`
+- **Optional**: `Docker` (if you prefer running the app with containers)
+- **Accounts & Credentials**
+  - **Google Cloud Console account**: For Google OAuth authentication, you'll need:
+    - `GOOGLE_CLIENT_ID`
+    - `GOOGLE_CLIENT_SECRET`
+  - **Gmail account**: For sending password reset emails, you'll need:
+    - `App Password`
 
 ## Installation
 
-- Install dependencies
+1. **Clone the repository**
 ```bash
-# Install dependencies for frontend
-cd frontend
-npm install
-
-# Go back to the root
-cd ..
-
-# Install dependencies for backend
-cd backend
-npm install
+git clone https://github.com/7ched7/mern-cloudfly-app.git
+cd mern-cloudfly-app
 ```
 
-- Create .env file in the backend directory
+2. **Create environment variables**
+- Create `.env.local` file in the `frontend` directory
+```ini
+VITE_BASE_URL=http://localhost:5173
+VITE_BACKEND_URL=http://localhost:5000
+```
+
+- Create `.env` file in the `backend` directory
 ```ini
 NODE_ENV=development
 PORT=5000  
@@ -32,7 +95,7 @@ MONGO_URI=your_mongo_database_url
 # google oauth configuration
 GOOGLE_CLIENT_ID=your_google_client_id
 GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_CALLBACK_URL=your_google_callback_url
+GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
 
 # jwt configuration
 JWT_SECRET=your_jwt_secret
@@ -49,51 +112,132 @@ EMAIL_SERVICE_EMAIL=your_google_email_address
 EMAIL_SERVICE_PASSWORD=your_app_password_here
 ```
 
-- Create .env.local file in the frontend directory
-```ini
-VITE_BASE_URL=http://localhost:5173
-VITE_BACKEND_URL=http://localhost:5000
-```
-
-- Start application
+3. **Start the application**
+- Manual
 ```bash
-# Start frontend
-cd frontend
-npm run dev
+# terminal 1
+cd backend && npm install && npm run dev
 
-# Open a new terminal
-
-# Start backend
-cd backend
-npm run dev
+# terminal 2
+cd frontend && npm install && npm run dev
 ```
 
-## Features
+- with Docker
+```bash
+docker-compose up
+```
 
-- Login/Register
-- Google OAuth with Passport.js
-- Forgot/Reset password
-- Edit your profile photo/name/password
-- Account deletion
-- Folder creation
-- Store files on the server by encrypting them
-- View file details
-- File/Folder rename
-- File/Folder move
-- Set files as public/private
-- Star/Unstar file/folder
-- File search
-- Trash bin
-- File selection
-- Selection rectangle
+## API Endpoints
 
-## Screenshot
+### Auth Routes
+Endpoint|Method|Description
+-|-|-
+/api/auth/login|POST|Logs in a user
+/api/auth/register|POST|Creates a new account
+/api/auth/logout|POST|Logs out of the account
+/api/auth/forgot-password|POST|Sends a password reset link
+/api/auth/reset-password|POST|Sets a new password
+/api/auth/verify-token|POST|Verifies JWT token
 
-![Drive page](/frontend/src/assets/drive_view.png)
+* Example Request
+```json
+POST /api/auth/login
+{
+  "email": "johndoe@mail.com",
+  "password": "123456"
+}
+```
+
+* Example Response
+```json
+{
+  "firstName": "john",
+  "lastName": "doe",
+  "email": "johndoe@mail.com",
+  "profileImage": "http://localhost:5000/images/default-profile-image.jpg",
+  "currentStorage": 0,
+  "maxStorage": 134217728
+}
+```
+
+### User Routes
+Endpoint|Method|Description
+-|-|-
+/api/user/update-image|PUT|Updates the profile image
+/api/user/remove-image|DELETE|Removes the profile image
+/api/user/update-name|PUT|Updates the user's name
+/api/user/change-password|PUT|Changes the current password
+/api/user/delete|DELETE|Permanently deletes the account
+
+* Example Request
+```json
+PUT /api/user/update-name
+{ 
+  "firstName": "jane", 
+  "lastName": "doe" 
+}
+```
+
+* Example Response
+```json
+{
+  "firstName": "jane",
+  "lastName": "doe",
+  "message": "Your name has been successfully updated"
+}
+```
+
+### Drive Routes
+Endpoint|Method|Description
+-|-|-
+/api/drive/upload|POST|Uploads files and encrypt
+/api/drive/get/:id|GET|Retrieves files and folders
+/api/drive/get-latest|GET|Retrieves the most recently uploaded items
+/api/drive/search|GET|Searches files and folders
+/api/drive/get-starred/:id|GET|Retrieves starred items
+/api/drive/get-trashed|GET|Retrieves items in the trash
+/api/drive/get-file/:id|GET|Retrieves file details
+/api/drive/download/:id|GET|Downloads the file
+/api/drive/create-folder|POST|Creates a new folder
+/api/drive/rename|PUT|Renames a file or folder
+/api/drive/star|PUT|Stars items
+/api/drive/unstar|PUT|Removes star from the items
+/api/drive/get-folders/:id|GET|Retrieves subfolders of a specific folder
+/api/drive/move|PUT|Moves items to another folder
+/api/drive/share-file|PUT|Makes a file public and generates a shareable link
+/api/drive/make-file-private|PUT|Makes a file private
+/api/drive/move-to-trash|PUT|Moves items to trash
+/api/drive/restore|PUT|Restores items from the trash
+/api/drive/delete|DELETE|Permanently deletes items
+/api/drive/file-preview-public/:key|GET|Public file preview
+/api/drive/get-file-public/:key|GET|Retrieves public file details
+/api/drive/download-public/:key|GET|Downloads a public file
+
+* Example Request
+```json
+POST /api/drive/create-folder
+{ 
+  "name": "images", 
+  "parent": "root" 
+}
+```
+
+* Example Response
+```json
+{
+  "folder": {
+    "_id": "69747e1a2d07f7cf14361d93",
+    "parent": null,
+    "name": "images",
+    "isStarred": false
+  },
+  "message": "Folder created successfully"
+}
+```
 
 ## Contributing
 
-If you'd like to contribute to this project, feel free to fork it and send a pull request.
+Feel free to fork the repository and send a pull request.
 
 ## License
 
