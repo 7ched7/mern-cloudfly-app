@@ -8,7 +8,7 @@
 This project is a file storage and sharing web application built with the MERN stack (MongoDB, Express, React, Node.js). 
 
 <p align="center">
-    <img src="./frontend/src/assets/drive_view.png" width="600" alt="Cloudfly Drive Page"/>
+    <img src="./images/drive_view.jpg" width="600" alt="Cloudfly Drive Page"/>
 </p>
 
 > [!NOTE]
@@ -57,12 +57,12 @@ Encryption|Crypto (AES-256)|File encryption
 
 ## Prerequisites
 
-**Required**: 
+**Required** 
 - Node.js 
 - npm (or alternatives)
 - MongoDB
 
-**Optional**: 
+**Optional** 
 - Docker (if you prefer running the app with containers)
 
 **Accounts & Credentials**
@@ -162,7 +162,7 @@ POST /api/auth/login
   "email": "johndoe@mail.com",
   "profileImage": "http://localhost:5000/images/default-profile-image.jpg",
   "currentStorage": 0,
-  "maxStorage": 134217728
+  "maxStorage": 1073741824
 }
 ```
 
@@ -196,7 +196,7 @@ PUT /api/user/update-name
 ### Drive Routes
 Endpoint|Method|Description
 -|-|-
-/api/drive/upload|POST|Uploads files and encrypt
+/api/drive/upload|POST|Uploads and encrypts files 
 /api/drive/get/:id|GET|Retrieves files and folders
 /api/drive/get-latest|GET|Retrieves the most recently uploaded items
 /api/drive/search|GET|Searches files and folders
