@@ -57,12 +57,18 @@ Encryption|Crypto (AES-256)|File encryption
 
 ## Prerequisites
 
-- **Required**: `Node.js`, `npm` (or alternatives), `MongoDB`
-- **Optional**: `Docker` (if you prefer running the app with containers)
-- **Accounts & Credentials**
+**Required**: 
+- Node.js 
+- npm (or alternatives)
+- MongoDB
+
+**Optional**: 
+- Docker (if you prefer running the app with containers)
+
+**Accounts & Credentials**
   - **Google Cloud Console account**: For Google OAuth authentication, you'll need:
-    - `GOOGLE_CLIENT_ID`
-    - `GOOGLE_CLIENT_SECRET`
+    - `Client ID`
+    - `Client Secret`
   - **Gmail account**: For sending password reset emails, you'll need:
     - `App Password`
 
