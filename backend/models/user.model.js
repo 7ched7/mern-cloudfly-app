@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
-const MAX_STORAGE = 1024 * 1024 * 128; // 128 MB
+const MAX_STORAGE = 1024 * 1024 * 1024; // 1 GB
 
 const userSchema = new mongoose.Schema(
     {
