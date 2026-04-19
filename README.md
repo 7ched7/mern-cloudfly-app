@@ -11,9 +11,6 @@ This project is a file storage and sharing web application built with the MERN s
     <img src="./images/drive_view.jpg" width="600" alt="Cloudfly Drive Page"/>
 </p>
 
-> [!NOTE]
-> This is **not a production-grade** cloud service, it's just a personal project I built to practice full stack development. However, it is quite suitable for **personal use** or **small team file sharing** scenarios.
-
 ## Stack
 
 Layer|Technology|Purpose
@@ -241,10 +238,4 @@ POST /api/drive/create-folder
 }
 ```
 
-## Contributing
-
-Feel free to fork the repository and send a pull request.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+[**LICENSE MIT**](LICENSE)
