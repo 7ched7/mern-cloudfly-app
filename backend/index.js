@@ -2,7 +2,6 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require('path');
-const connectToDB = require("./config/db.js");
 const cookieParser = require('cookie-parser')
 const morgan = require("morgan");
 const helmet = require("helmet");
@@ -48,13 +47,5 @@ app.use("/api/drive", driveRoute);
 // error handling
 app.use(errorHandlerMiddleware);
 
-// connect db & start server
-const start = async () => {
-    try {
-        await connectToDB(process.env.MONGO_URI);
-        app.listen(PORT, console.log(`Server is listening on port ${PORT}`));
-    } catch (e) {
-        console.log(e);
-    }
-};
-start();
+// start server
+app.listen(PORT, console.log(`Server is listening on port ${PORT}`));
